@@ -1613,14 +1613,14 @@ router.get('/anime/loli', async(req, res, next) => {
 });
 
 
-router.get('/anime/welcome', async (req, res, next) => {
+router.get('/anime/manga', async (req, res, next) => {
         var Apikey = req.query.apikey,
 	    search = req.query.search
             
 	if(!Apikey) return res.json(loghandler.notparam)
 	if(listkey.includes(Apikey)){
-	if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter nama"})
-       fetch(encodeURI(`http://hadi-api.herokuapp.com/api/card/welcome`))
+	if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter search"})
+       fetch(encodeURI(`https://docs-api-zahirrr.herokuapp.com/api/manga?keyword=${search}`))
         .then(response => response.json())
         .then(data => {
         var result = data;
@@ -2425,6 +2425,10 @@ router.get('/maker/skatch', async(req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 });
+
+router.get('/welcome',async(req,res)=>{axios.get('http://hadi-api.herokuapp.com/api/card/welcome',responseType: 'arraybuffer').then(resp=>{
+res.end(resp.data)
+})})
 
 router.get('/maker/emoji2png', async(req, res, next) => {
   const apikey = req.query.apikey;
