@@ -2426,10 +2426,6 @@ router.get('/maker/skatch', async(req, res, next) => {
   }
 });
 
-router.get('/welcome',async(req,res)=>{axios.get('http://hadi-api.herokuapp.com/api/card/welcome',responseType: 'arraybuffer').then(resp=>{
-res.end(resp.data)
-})})
-
 router.get('/maker/emoji2png', async(req, res, next) => {
   const apikey = req.query.apikey;
   const Emoji = req.query.text;
